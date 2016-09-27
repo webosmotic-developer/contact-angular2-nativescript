@@ -17,6 +17,7 @@ import { setHintColor } from "../../utils/hint-util";
 })
 export class SignUpComponent implements OnInit {
     user:User;
+    confirmPassword = "";
 
     constructor(private router:Router, private userService:UserService, private page:Page) {
         this.user = new User();
@@ -46,6 +47,16 @@ export class SignUpComponent implements OnInit {
             return;
         }
 
+        if (this.confirmPassword === "") {
+            alert("Confirm Password is required.");
+            return;
+        }
+
+        if (this.user.password !== this.confirmPassword) {
+            alert("Password doesn't match.");
+            return;
+        }
+
         this.signUp();
     }
 
@@ -55,8 +66,16 @@ export class SignUpComponent implements OnInit {
             .subscribe(
             () => {
                 alert("Your account was successfully created.");
+                this.navigate();
             },
-            (error) => alert(error._body.message)
+            (error) => {
+                for (var field in error._body.errors) {
+                    if(error._body.errors.hasOwnProperty(field)){
+                        var value = error._body.errors[field];
+                        alert(value.message);
+                    }
+                }
+            }
         );
     }
 
