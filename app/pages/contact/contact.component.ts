@@ -1,5 +1,6 @@
 import { Component, NgZone, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+var dialogs = require("ui/dialogs");
 
 import { Config } from "../../shared/config";
 import { Contact } from "../../shared/contact/contact";
@@ -36,14 +37,18 @@ export class ContactComponent implements OnInit {
     }
 
     delete(contact:Contact) {
-        this.contactService.delete(contact._id)
-            .subscribe(() => {
-                // Running the array splice in a zone ensures that change detection gets triggered.
-                this.zone.run(() => {
-                    var index = this.contactList.indexOf(contact);
-                    this.contactList.splice(index, 1);
-                });
-            });
+        dialogs.confirm("Are you sure you want to delete this contact?").then(result => {
+            if(result){
+                this.contactService.delete(contact._id)
+                    .subscribe(() => {
+                        // Running the array splice in a zone ensures that change detection gets triggered.
+                        this.zone.run(() => {
+                            var index = this.contactList.indexOf(contact);
+                            this.contactList.splice(index, 1);
+                        });
+                    });
+            }
+        });
     }
 
     logout() {
