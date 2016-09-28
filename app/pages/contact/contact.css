@@ -1,30 +1,30 @@
 ListView {
     opacity: 0;
 }
+
+.contact-container {
+    padding: 50px 30px;
+}
+
 .visible {
     animation-name: show;
     animation-duration: 1s;
 }
+
 @keyframes show {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-.add-bar {
+
+.icon-button{
     background-color: #CB1D00;
-    padding: 5 10;
-}
-.add-bar Image {
-    height: 15;
-    vertical-align: center;
-    margin-left: 10;
-    margin-right: 5;
-}
-TextField {
     color: white;
+    width: 60px;
+    height: 40px;
 }
-.delete-container {
+
+.submit-button {
     background-color: #CB1D00;
-    padding: 5;
-    height: 20;
-    margin-right: 8;
+    color: white;
+    margin-top: 20;
 }

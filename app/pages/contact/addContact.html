@@ -1,0 +1,15 @@
+<ActionBar [title]="contactId === 'add' ? 'Add Contact' : 'Edit Contact'">
+    <ActionItem text="Back" [nsRouterLink]="['/contacts']"
+                android.systemIcon="ic_menu_back"></ActionItem>
+
+    <ActionItem text="Logout" (tap)="logout()"
+                android.systemIcon="ic_lock_power_off_alpha"></ActionItem>
+</ActionBar>
+<StackLayout #container class="contact-container">
+    <TextField #name hint="*Name" keyboardType="name" [(ngModel)]="contact.name"
+               autocorrect="false" autocapitalizationType="none"></TextField>
+    <TextField #email hint="*Email Address" keyboardType="email" [(ngModel)]="contact.email"
+               autocorrect="false" autocapitalizationType="none"></TextField>
+    <TextField #phone hint="*Phone" keyboardType="phone" [(ngModel)]="contact.phone"></TextField>
+    <Button text="Save" class="submit-button" (tap)="submit()"></Button>
+</StackLayout>

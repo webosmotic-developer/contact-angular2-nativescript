@@ -1,8 +1,8 @@
 <StackLayout #container>
   <Label text="Sign In" horizontalAlignment="center"></Label>
-  <TextField #email hint="Email Address" keyboardType="email" [(ngModel)]="user.email"
+  <TextField #email hint="*Email Address" keyboardType="email" [(ngModel)]="user.email"
     autocorrect="false" autocapitalizationType="none"></TextField>
-  <TextField #password hint="Password" secure="true" [(ngModel)]="user.password"></TextField>
+  <TextField #password hint="*Password" secure="true" [(ngModel)]="user.password"></TextField>
 
   <Button text="Sign In" class="submit-button" (tap)="submit()"></Button>
   <Button text="Sign Up" (tap)="navigate()"></Button>

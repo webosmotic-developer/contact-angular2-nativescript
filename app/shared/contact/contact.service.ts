@@ -19,11 +19,36 @@ export class ContactService {
             .catch(this.handleErrors);
     }
 
+    get(id:string) {
+        return this.http.get(Config.apiUrl + "/api/contacts/" + id)
+            .map(res => res.json())
+            .map(data => {
+                return data;
+            })
+            .catch(this.handleErrors);
+    }
+
     add(contact:Contact) {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
 
         return this.http.post(Config.apiUrl + "/api/contacts", {
+            name: contact.name,
+            email: contact.email,
+            phone: contact.phone
+        }, {headers: headers})
+            .map(res => res.json())
+            .map(data => {
+                return data;
+            })
+            .catch(this.handleErrors);
+    }
+
+    update(contact:Contact) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        return this.http.put(Config.apiUrl + "/api/contacts/" + contact._id, {
             name: contact.name,
             email: contact.email,
             phone: contact.phone

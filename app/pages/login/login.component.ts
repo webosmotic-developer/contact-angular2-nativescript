@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.page.actionBarHidden = true;
-        this.page.backgroundImage = this.page.ios ? "res://bg_login.jpg" : "res://bg_login";
+        this.page.backgroundColor = new Color("#00aeac");
     }
 
     submit() {

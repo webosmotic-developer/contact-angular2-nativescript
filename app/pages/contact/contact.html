@@ -1,19 +1,23 @@
 <ActionBar title="Contacts">
-    <ActionItem text="Logout" (tap)="logout()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
+    <ActionItem text="Add" [nsRouterLink]="['/contacts/add']"
+                android.systemIcon="ic_menu_add"></ActionItem>
+
+    <ActionItem text="Logout" (tap)="logout()"
+                android.systemIcon="ic_lock_power_off_alpha"></ActionItem>
 </ActionBar>
 
 <GridLayout rows="auto, *">
-    <GridLayout row="0" columns="*, auto" class="add-bar">
-        <TextField #contactTextField [(ngModel)]="contact.name" hint="Enter a contact name" col="0"></TextField>
-        <Image src="res://add" (tap)="add()" col="1"></Image>
-    </GridLayout>
-
     <ListView [items]="contactList" row="1" class="small-spacing" [class.visible]="listLoaded">
         <template let-item="item">
             <GridLayout columns="*, auto">
-                <Label col="0" [text]="item.name" class="medium-spacing"></Label>
-                <StackLayout col="1" class="delete-container" (tap)="delete(item)">
-                    <Image src="res://delete"></Image>
+                <StackLayout col="0" orientation="vertical" height="60">
+                    <Label [text]="item.name" height="20"></Label>
+                    <Label [text]="item.email" height="20"></Label>
+                    <Label [text]="item.phone" height="20"></Label>
+                </StackLayout>
+                <StackLayout col="1" orientation="horizontal" height="60">
+                    <Button class="icon-button" text="Edit" [nsRouterLink]="['/contacts/'+item._id]"></Button>
+                    <Button class="icon-button" text="Del" (tap)="delete(item)"></Button>
                 </StackLayout>
             </GridLayout>
         </template>
