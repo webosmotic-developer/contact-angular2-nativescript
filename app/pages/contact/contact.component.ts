@@ -39,6 +39,8 @@ export class ContactComponent implements OnInit {
     delete(contact:Contact) {
         dialogs.confirm("Are you sure you want to delete this contact?").then(result => {
             if(result){
+                this.isLoading = true;
+                this.listLoaded = false;
                 this.contactService.delete(contact._id)
                     .subscribe(() => {
                         // Running the array splice in a zone ensures that change detection gets triggered.
@@ -46,6 +48,8 @@ export class ContactComponent implements OnInit {
                             var index = this.contactList.indexOf(contact);
                             this.contactList.splice(index, 1);
                         });
+                        this.isLoading = false;
+                        this.listLoaded = true;
                     });
             }
         });
