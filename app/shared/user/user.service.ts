@@ -39,6 +39,7 @@ export class UserService {
             .map(response => response.json())
             .do(data => {
                 Config.token = data.token;
+                Config.user = data.user;
             })
             .catch(this.handleErrors);
     }

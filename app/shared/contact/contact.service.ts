@@ -11,7 +11,7 @@ export class ContactService {
     }
 
     load() {
-        return this.http.get(Config.apiUrl + "/api/contacts")
+        return this.http.get(Config.apiUrl + "/api/users/" + Config.user._id + "/contacts")
             .map(res => res.json())
             .map(data => {
                 return data;
@@ -35,7 +35,8 @@ export class ContactService {
         return this.http.post(Config.apiUrl + "/api/contacts", {
             name: contact.name,
             email: contact.email,
-            phone: contact.phone
+            phone: contact.phone,
+            userId : Config.user._id
         }, {headers: headers})
             .map(res => res.json())
             .map(data => {

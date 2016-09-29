@@ -57,6 +57,7 @@ export class ContactComponent implements OnInit {
 
     logout() {
         Config.token = "";
+        Config.user._id = "";
         this.router.navigate([""]);
     }
 }

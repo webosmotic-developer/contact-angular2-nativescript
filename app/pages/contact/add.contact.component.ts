@@ -88,6 +88,7 @@ export class AddContactComponent implements OnInit {
 
     logout() {
         Config.token = "";
+        Config.user._id = "";
         this.router.navigate([""]);
     }
 }
