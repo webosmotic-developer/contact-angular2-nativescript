@@ -1,5 +1,5 @@
 <ActionBar title="Contacts">
-    <ActionItem text="Add" [nsRouterLink]="['/contacts/add']"
+    <ActionItem text="Add" [nsRouterLink]="['/contacts/add']" pageTransition="flipRight"
                 android.systemIcon="ic_menu_add"></ActionItem>
 
     <ActionItem text="Logout" (tap)="logout()"
@@ -16,13 +16,15 @@
                     <Label [text]="item.phone" height="20"></Label>
                 </StackLayout>
                 <StackLayout col="1" orientation="horizontal" height="60">
-                    <Button class="icon-button" text="Edit" [nsRouterLink]="['/contacts/'+item._id]"></Button>
+                    <Button class="icon-button" text="Edit" [nsRouterLink]="['/contacts/'+item._id]"
+                            pageTransition="flipRight"></Button>
                     <Button class="icon-button" text="Del" (tap)="delete(item)"></Button>
                 </StackLayout>
             </GridLayout>
         </template>
     </ListView>
 
-    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1"
+                       horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
 
 </GridLayout>

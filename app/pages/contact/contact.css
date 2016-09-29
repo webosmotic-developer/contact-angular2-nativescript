@@ -3,7 +3,22 @@ ListView {
 }
 
 .contact-container {
-    padding: 50px 30px;
+    height: 300px;
+    margin-left: 30px;
+    margin-right: 30px;
+    background-color: white;
+}
+
+.contact-container Button, .contact-container TextField {
+    margin-left: 16;
+    margin-right: 16;
+    margin-bottom: 10;
+}
+
+.contact-container Label {
+    margin-top: 5;
+    margin-bottom: 20;
+    font-size: 36px;
 }
 
 .visible {

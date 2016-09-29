@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Color } from "color";
+import { Page } from "ui/page";
 
 import { Config } from "../../shared/config";
 import { Contact } from "../../shared/contact/contact";
@@ -16,7 +18,7 @@ export class AddContactComponent implements OnInit {
     contact:Contact;
     contactId = "";
 
-    constructor(private router:Router, private route:ActivatedRoute, private contactService:ContactService) {
+    constructor(private router:Router, private route:ActivatedRoute, private contactService:ContactService, private page:Page) {
         this.contact = new Contact();
         this.contact.name = "";
         this.contact.email = "";
@@ -24,6 +26,7 @@ export class AddContactComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.page.backgroundColor = new Color("#00aeac");
         this.route.params.forEach((params:Params) => {
             this.contactId = params['id'];
             if (this.contactId !== 'add') {

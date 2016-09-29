@@ -1,3 +1,4 @@
+<ActionBar title=" Contact" android.icon="res://title_logo" android.iconVisibility="always"></ActionBar>
 <StackLayout #container>
   <Label text="Sign Up" horizontalAlignment="center"></Label>
   <TextField #name hint="*Name" keyboardType="name" [(ngModel)]="user.name"
@@ -7,5 +8,5 @@
   <TextField #password hint="*Password" secure="true" [(ngModel)]="user.password"></TextField>
   <TextField #cPassword hint="*Confirm Password" secure="true" [(ngModel)]="confirmPassword"></TextField>
   <Button text="Sign Up" class="submit-button" (tap)="submit()"></Button>
-  <Button text="Back to login" (tap)="navigate()"></Button>
+  <Button text="Back to login" [nsRouterLink]="['']" pageTransition="flipLeft"></Button>
 </StackLayout>

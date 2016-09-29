@@ -1,11 +1,12 @@
-<ActionBar [title]="contactId === 'add' ? 'Add Contact' : 'Edit Contact'">
-    <ActionItem text="Back" [nsRouterLink]="['/contacts']"
+<ActionBar title="Manage Contact">
+    <ActionItem text="Back" [nsRouterLink]="['/contacts']" pageTransition="flipLeft"
                 android.systemIcon="ic_menu_back"></ActionItem>
 
     <ActionItem text="Logout" (tap)="logout()"
                 android.systemIcon="ic_lock_power_off_alpha"></ActionItem>
 </ActionBar>
 <StackLayout #container class="contact-container">
+    <Label [text]="contactId === 'add' ? 'Add Contact' : 'Edit Contact'" horizontalAlignment="center"></Label>
     <TextField #name hint="*Name" keyboardType="name" [(ngModel)]="contact.name"
                autocorrect="false" autocapitalizationType="none"></TextField>
     <TextField #email hint="*Email Address" keyboardType="email" [(ngModel)]="contact.email"
