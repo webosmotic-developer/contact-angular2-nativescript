@@ -11,7 +11,11 @@ export class ContactService {
     }
 
     load() {
-        return this.http.get(Config.apiUrl + "/api/users/" + Config.user._id + "/contacts")
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", "Bearer " + Config.token);
+
+        return this.http.get(Config.apiUrl + "/api/users/" + Config.user._id + "/contacts", {headers: headers})
             .map(res => res.json())
             .map(data => {
                 return data;
@@ -20,7 +24,11 @@ export class ContactService {
     }
 
     get(id:string) {
-        return this.http.get(Config.apiUrl + "/api/contacts/" + id)
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", "Bearer " + Config.token);
+
+        return this.http.get(Config.apiUrl + "/api/contacts/" + id, {headers: headers})
             .map(res => res.json())
             .map(data => {
                 return data;
@@ -31,12 +39,13 @@ export class ContactService {
     add(contact:Contact) {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
+        headers.append("Authorization", "Bearer " + Config.token);
 
         return this.http.post(Config.apiUrl + "/api/contacts", {
             name: contact.name,
             email: contact.email,
             phone: contact.phone,
-            userId : Config.user._id
+            userId: Config.user._id
         }, {headers: headers})
             .map(res => res.json())
             .map(data => {
@@ -48,6 +57,7 @@ export class ContactService {
     update(contact:Contact) {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
+        headers.append("Authorization", "Bearer " + Config.token);
 
         return this.http.put(Config.apiUrl + "/api/contacts/" + contact._id, {
             name: contact.name,
@@ -62,8 +72,9 @@ export class ContactService {
     }
 
     delete(id:string) {
-        var headers = new Headers();
+        let headers = new Headers();
         headers.append("Content-Type", "application/json");
+        headers.append("Authorization", "Bearer " + Config.token);
 
         return this.http.delete(
             Config.apiUrl + "/api/contacts/" + id,
